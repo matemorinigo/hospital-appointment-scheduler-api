@@ -18,7 +18,68 @@ At this moment the API version is v1.
 ## Endpoints
 ### Patients
 #### GET  `api/v1/patients`
+When the server receives this request, should answer with status code 200 and return all patients records
+>Request 
+>```
+> curl -X 'GET' \\
+> ‘api/v1/patients’ \\
+>```
+>Response body
+>```
+> [{
+>   "patientID" : 1,
+>   "user": "user1",
+>   "password": "password1",
+>   "name": "name1",
+>   "surname": "surname1",
+>   "isAdmin": false
+> },
+> {
+>   "patientID" : 2,
+>   "user": "user2",
+>   "password": "password2",
+>   "name": "name2",
+>   "surname": "surname2",
+>   "isAdmin": true
+> }...]
+>```
+>
 #### POST `api/v1/patients`
+When the server receives this request, should answer with status code 201 and should create a patient with the request body or should answer with 400 if the body hasn't the necessary parameters
+>Request 
+>```
+> curl -X 'POST' \\
+> ‘api/v1/patients’ \\
+> -d '{
+>      "user": "user1",
+>      "password": "password1",
+>      "name": "name1",
+>      "surname": "surname1",
+>      "isAdmin": false 
+>    }'
+>```
+
+> [!CAUTION]
+> Giving the posibility to make admin users by this endpoint could have some risk
+
+>Response body
+>```
+> [{
+>   "patientID" : 1,
+>   "user": "user1",
+>   "password": "password1",
+>   "name": "name1",
+>   "surname": "surname1"
+> },
+> {
+>   "patientID" : 2,
+>   "user": "user2",
+>   "password": "password2",
+>   "name": "name2",
+>   "surname": "surname2"
+> }...]
+>```
+>
 #### GET `api/v1/patients/{patientID}`
 #### PUT `api/v1/patients/{patientID}`
 #### DELETE `api/v1/patients/{patientID}`
